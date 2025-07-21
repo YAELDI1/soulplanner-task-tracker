@@ -6,10 +6,14 @@ from typing import Dict, Any
 
 # Database Configuration
 DATABASE_NAME = 'tasks.db'
-DATABASE_PATH = os.path.join(os.path.dirname(__file__), DATABASE_NAME)
+
+# Store the database in the user's AppData\Local\MyTaskApp directory for persistence
+APP_NAME = 'SoulPlanner'
+appdata_dir = os.path.join(os.environ.get('LOCALAPPDATA', os.path.expanduser('~')), APP_NAME)
+os.makedirs(appdata_dir, exist_ok=True)
+DATABASE_PATH = os.path.join(appdata_dir, DATABASE_NAME)
 
 # Application Settings
-APP_NAME = "SoulPlanner"
 APP_VERSION = "2.0.0"
 DEFAULT_WINDOW_SIZE = "1200x800"
 MIN_WINDOW_SIZE = "800x600"
